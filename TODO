@@ -1,0 +1,31 @@
+ Svg graph computation:
+ - The follow-up extractors of another follow-ups extractors are not added.
+ 
+ Provenance:
+ - Display the fact on the provenance page (not so straightforward modification).
+ - Try to speed up provenance computation.
+ 
+ Preview:
+ - Get rid of 1000-limit for the number of facts displayed in the preview (pagination? just remove?).
+ - Add a reasonable preview for the data files.
+ 
+ 
+ General:
+ - Introduce 'public' names for themes (so that names like '...veryDirty' are not displayed to users).
+ - Check that opening external editor works on Windows (the proper command should be specified in the init file).
+ - Create a HOWTO for getting a fresh running project instance.
+ 
+ SVG interface:
+ - Clicking 'Show dependent extractors' for the second time with another extractor doesn't change highlight but cancels it.
+ 	(Should be cancelled only when we click for the second time on the same extractor).
+ - Highlighting doesn't affect the arrow endings.
+
+ 	
+ Cleanliness:
+ - Get rid of urls hard-coded in templates and scripts.
+  
+  
+  
+DONE:
+   [- (?) Create an automatic script for cutting the themes so that they contain only rows related to objects possibly useful in the demo presentation.
+  (Speed up computations so that the user/presenter doesn't have to worry about unwillingly triggering costly extraction).] 
