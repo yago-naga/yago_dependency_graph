@@ -6,14 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import extractors.Extractor;
 import javatools.administrative.Announce;
 import javatools.filehandlers.FileLines;
-import basics.Theme;
-import fromWikipedia.Extractor;
+import utils.Theme;
 
 /**
  * Identifies the themes that are to be highlighted for a certain fact.
- * 
+ *
  * @author Fabian M. Suchanek
  *
  */
@@ -25,11 +25,12 @@ public class Provenance {
     Set<Theme> result = new HashSet<>();
     // We use a hack here: instead of using FactSource, we run through the file line by line.
     // This is 10 times faster.
-    factId="#@ "+factId;
+    factId = "#@ " + factId;
     Announce.progressStart("Searching fact", extractors.size());
     for (Extractor e : extractors) {
       for (Theme t : e.output()) {
-        File file = t.file(yagoFolder);
+        t.assignToFolder(yagoFolder);
+        File file = t.file();
         if (!file.exists()) continue;
         FileLines lines = new FileLines(file);
         for (String line : lines) {
@@ -46,9 +47,9 @@ public class Provenance {
     Announce.progressDone();
     return (result);
   }
-  
+
   public static String encodedProvenance(String factId, List<Extractor> extractors, File yagoFolder) throws IOException {
-	  return MakeSvg.seq(provenance(factId, extractors, yagoFolder));
+    return MakeSvg.seq(provenance(factId, extractors, yagoFolder));
   }
 
   /** For testing purposes*/
